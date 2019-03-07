@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -16,14 +17,14 @@ namespace Brokeree.WepApi.Controllers
 {
     public class ResourceController : ApiController
     {
-        private const string STORAGE_PREFIX = "RES_";
-        private const string DEFAULT_VALUE = "AbBbbCDE";
-        private const string WEBHOOK_URL = "https://reqres.in/api/webhook";
+        private string STORAGE_PREFIX = string.IsNullOrEmpty(ConfigurationManager.AppSettings["STORAGE_PREFIX"].ToString()) ? "RES_" : ConfigurationManager.AppSettings["STORAGE_PREFIX"].ToString();
+        private string DEFAULT_VALUE = string.IsNullOrEmpty(ConfigurationManager.AppSettings["DEFAULT_VALUE"].ToString()) ? "AbBbbCDE" : ConfigurationManager.AppSettings["DEFAULT_VALUE"].ToString();
+        private string WEBHOOK_URL = string.IsNullOrEmpty(ConfigurationManager.AppSettings["WEBHOOK_URL"].ToString()) ? "https://reqres.in/api/webhook" : ConfigurationManager.AppSettings["WEBHOOK_URL"].ToString();
         private const string CONTROLLER_NAME = "Resource";
-        private const int TRY_COUNT = 3;
+        private int TRY_COUNT = int.TryParse(ConfigurationManager.AppSettings["TRY_COUNT"], out result) ? 3 : int.Parse(ConfigurationManager.AppSettings["TRY_COUNT"]);
 
         private Logger nLog = LogManager.GetLogger("ExceptionsLogger");
-
+        private static int result;
 
         [HttpGet]
         public ResponseModel<GetAllResponseModel> Get()
