@@ -93,13 +93,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ResourceV2Controller.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
+    <Compile Include="Factory\ResourceDBStorage.cs" />
+    <Compile Include="Factory\ResourceFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ResourceHelper.cs" />
-    <Compile Include="Models\ResourceViewModel.cs" />
+    <Compile Include="Factory\ResourceMemoryStorage.cs" />
+    <Compile Include="Factory\ResourceFileStorage.cs" />
+    <Compile Include="Factory\Models\IResourceManager.cs" />
+    <Compile Include="Helpers\MainHelper.cs" />
+    <Compile Include="Helpers\MSSQLHelper.cs" />
+    <Compile Include="Models\IResourceRepository.cs" />
+    <Compile Include="Models\ResourceModels.cs" />
+    <Compile Include="Models\ViewModels\ResourceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ResourceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

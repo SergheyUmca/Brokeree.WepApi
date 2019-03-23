@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Brokeree.WepApi.Factory.Models;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Caching;
 
-namespace Brokeree.WepApi.Helpers
+namespace Brokeree.WepApi.Factory
 {
-    public class ResourceHelper
+    public class ResourceMemoryStorage : IResourceManager
     {
         public static List<KeyValuePair<string, object>> Get()
         {
@@ -105,6 +106,38 @@ namespace Brokeree.WepApi.Helpers
         public static bool CheckIsNull(string pKey)
         {
             return Get(pKey) == null;
+        }
+
+
+
+        List<KeyValuePair<string, string>> IResourceManager.Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Get(string pKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object SetOrGet(string pKey, string obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Set(string pKey, string obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(string pKey, string obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove(string key)
+        {
+            throw new NotImplementedException();
         }
     }
 }
